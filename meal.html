@@ -23,7 +23,7 @@
     <header>
         <nav>
             <a href="./index.html" class="logo-link"><img src="./images/logo.png" alt="" id="logo"></a>
-            <a href="./menu.html" id="active">ON THE MENU</a>
+            <a href="./menu.html">ON THE MENU</a>
             <a href="#">PRICING</a>
             <a href="#">WINE</a>
             <a href="#">GIFTS</a>
@@ -36,142 +36,27 @@
     </header>
     <!-- header end  -->
 
-    <!-- search bar section start  -->
-    <section class="search-bar">
-        <div class="container">
-            <form class="search-bar-form" id="search-bar-form">
-                <div class="text">
-                    <h1>Cookbook</h1>
-                </div>
-                <div class="search-input-container">
-                    <input type="text" id="search-input" placeholder="Search" />
-                </div>
-                <div class="go-btn-container">
-                    <input type="submit" value="GO" id="go-search" />
-                </div>
-            </form>
+    <!-- meal details section start  -->
+    <section class="meal-detail-section">
+        <div class="meal-details-container">
+                <img id="meal-image"/>
+            <div class="text-section">
+                <h1 id="title"></h1>
+                <p id="sub-title"></p>
+                <span>From the Test Kitchen</span>
+                <p id="description"></p>
+                <button id="add-to-cart">Add to cart</button>
+            </div>
         </div>
     </section>
-    <!-- search bar secrtion end  -->
-
-    <section class="meals-section">
-        <div class="meals-section-conainer">
-            <div class="meals-filters-container">
-                <!-- all the filters  -->
-                <div class="main-ingredient">
-                    <p class="filter-title" onclick="display(thisApi)">Main Ingredient</p>
-                    <ul>
-                        <li id="beef" class="filter-me">Beef</li>
-                        <li id="fish" class="filter-me">Fish</li>
-                        <li id="lamb" class="filter-me">Lamb</li>
-                        <li id="pork" class="filter-me">Pork</li>
-                        <li id="poultry" class="filter-me">Poultry</li>
-                        <li id="shellfish" class="filter-me">Shellfish</li>
-                        <li id="vegetarian" class="filter-me">Vegetarian</li>
-                    </ul>
-                </div>
-                <div class="cuisine">
-                    <p class="filter-title" onclick="display(thisApi)">Cuisine</p>
-                    <ul>
-                        <li id="african" class="filter-me">african</li>
-                        <li id="american" class="filter-me">american</li>
-                        <li id="asian" class="filter-me">asian</li>
-                        <li id="british" class="filter-me">british</li>
-                        <li id="cajunCreole" class="filter-me">cajun creole</li>
-                    </ul>
-                </div>
-                <div class="sorting">
-                    <p class="filter-title" id="filter-title">Sort by price</p>
-                    <ul>
-                        <li id="low">Low to high</li>
-                        <li id="high">High to low</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="meals-conatainer">
-                <h1 id="filter-heading"></h1>
-                <div class="meals-cards-container" id="meals-cards-container">
-                </div>
-            </div>
-            <script>
-                const mealsContainer = document.getElementById("meals-cards-container");
-                const thisApi = JSON.parse(localStorage.getItem("api")) || [];
-                const filters = document.querySelectorAll(".filter-me");
-                const filterTitle = document.getElementById("filter-heading");
-                const searchEl = document.getElementById("search-input");
-                const goSearch = document.getElementById("search-bar-form");
-                console.log(thisApi);
-                display(thisApi);
-                goSearch.addEventListener("submit", (event) => {
-                    event.preventDefault();
-                    let input = searchEl.value;
-                    if(input == ""){
-                        display(thisApi);
-                    }else{
-                        let tempApi = thisApi;
-                        let filteredApi = tempApi.filter((ele) => {
-                            if((ele.title.toUpperCase().includes(input.toUpperCase())) || (ele.subTitle.toUpperCase().includes(input.toUpperCase()))){
-                                return true;
-                            }
-                        })
-                        display(filteredApi);
-                    }
-                })
-                filters.forEach((ele) => {
-                    ele.addEventListener("click", (event) => {
-                        let tempApi = thisApi;
-                        let filterValue = event.target.innerText;
-                        filterTitle.textContent = `${filterValue} Recipes`;
-                        let filteredApi = tempApi.filter((ele) => {
-                            if (ele.category == filterValue) {
-                                return true;
-                            }
-                        })
-                        display(filteredApi);
-                    })
-                })
-                document.getElementById("low").addEventListener("click", () => {
-                    let tempApi = thisApi;
-                    let filteredApi = tempApi.sort((a,b) => a.price-b.price);
-                    display(filteredApi);
-                })
-                document.getElementById("high").addEventListener("click", () => {
-                    let tempApi = thisApi;
-                    let filteredApi = tempApi.sort((a,b) => b.price-a.price);
-                    display(filteredApi);
-                })
-                function display(data) {
-                    mealsContainer.innerHTML = "";
-                    data.forEach((ele, index) => {
-                        let card = document.createElement("div");
-                        let img = document.createElement("img");
-                        img.src = ele.image;
-                        let title = document.createElement("h3");
-                        title.textContent = ele.title;
-                        let pricing = document.createElement("div");
-                        pricing.setAttribute("id", "pricing");
-                        let discount = document.createElement("span");
-                        discount.setAttribute("id", "discount");
-                        let off = Math.floor(Math.random() * 40) + 5;
-                        discount.textContent = `${off}% OFF`;
-                        let price = document.createElement("span");
-                        price.setAttribute("id", "price")
-                        price.textContent = `₹${ele.price} for one`;
-                        pricing.append(discount, price);
-                        let subTitle = document.createElement("p");
-                        subTitle.textContent = ele.subTitle;
-                        card.addEventListener("click", () => {
-                            localStorage.setItem("selectedMeal", JSON.stringify(ele));
-                            location.href = "./meal.html"
-                        })
-                        
-                        card.append(img, title, pricing, subTitle);
-                        mealsContainer.append(card);
-                    })
-                }
-            </script>
-        </div>
-    </section>
+    <script>
+        const thisApi = JSON.parse(localStorage.getItem("selectedMeal"));
+        document.getElementById("meal-image").src = thisApi.image;
+        document.getElementById("title").textContent = thisApi.title;
+        document.getElementById("sub-title").textContent = thisApi.subTitle;
+        document.getElementById("description").textContent = thisApi.description;
+    </script>
+    <!-- meal details section end  -->
 
     <!-- footer section started  -->
     <footer>
