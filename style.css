@@ -710,9 +710,11 @@ footer .container .sign-up p {
     padding: 10px 0;
     border-bottom: solid 1px #e4e6eb;
 }
-.search-bar *{
+
+.search-bar * {
     font-family: var(--soft);
 }
+
 .search-bar-form>.text {
     width: 20%;
 }
@@ -721,9 +723,11 @@ footer .container .sign-up p {
     color: var(--baseColor);
     font-family: var(--soft);
 }
-.search-input-container{
+
+.search-input-container {
     width: 60%;
 }
+
 .search-input-container>input {
     border: 1px solid rgb(0 0 0 / 5%);
     width: 100%;
@@ -736,9 +740,11 @@ footer .container .sign-up p {
     color: var(--light);
     border: 3px;
 }
-.go-btn-container{
+
+.go-btn-container {
     width: 10%;
 }
+
 .go-btn-container>input {
     background-color: var(--baseColor);
     color: #fff;
@@ -750,6 +756,7 @@ footer .container .sign-up p {
     cursor: pointer;
     border-radius: 2px;
 }
+
 .search-bar-form {
     width: 80%;
     margin: auto;
@@ -757,120 +764,145 @@ footer .container .sign-up p {
     justify-content: space-between;
     align-items: center;
 }
+
 /* meals container  */
-.meals-section-conainer{
+.meals-section-conainer {
     display: flex;
     justify-content: space-between;
     margin: 30px 40px;
 }
-.meals-cards-container{
+
+.meals-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px 15px;
 }
-.meals-cards-container > div{
+
+.meals-cards-container>div {
     width: 300px;
     cursor: pointer;
     transition: 0.3s;
 }
-.meals-cards-container > div:hover{
+
+.meals-cards-container>div:hover {
     transform: scale(1.05);
 }
-.meals-cards-container > div > img{
+
+.meals-cards-container>div>img {
     width: 100%;
     height: 182px;
     object-fit: cover;
 }
-.meals-cards-container > div > h3{
+
+.meals-cards-container>div>h3 {
     font-family: var(--soft);
     font-size: 16px;
     color: #303236;
 }
-.meals-cards-container > div > p{
+
+.meals-cards-container>div>p {
     font-family: var(--soft);
     color: var(--light);
     font-size: 14px;
 }
+
 #pricing {
     font-family: var(--soft);
     display: flex;
     justify-content: space-between;
 }
-#discount{
+
+#discount {
     color: rgb(0, 163, 0);
 }
-#price{
+
+#price {
     margin-right: 5px;
     color: red;
 }
-.meals-filters-container > div{
+
+.meals-filters-container>div {
     margin-bottom: 30px;
     padding-top: 15px;
     border-top: solid #d3d5db 1px;
 }
-.meals-filters-container > div p{
+
+.meals-filters-container>div p {
     cursor: pointer;
     font-family: var(--soft);
     font-size: 18px;
 }
-.meals-filters-container .filter-title:hover{
+
+.meals-filters-container .filter-title:hover {
     text-decoration: underline;
 }
-.meals-filters-container > div ul{
+
+.meals-filters-container>div ul {
     list-style: none;
 }
-.meals-filters-container > div ul li{
+
+.meals-filters-container>div ul li {
     color: var(--light);
     font-family: var(--soft);
     transition: 0.3s;
     cursor: pointer;
 }
-.meals-filters-container > div ul li:hover{
+
+.meals-filters-container>div ul li:hover {
     transform: translateX(5px);
     color: red;
 }
-#filter-heading{
+
+#filter-heading {
     font-family: var(--soft);
     font-size: 28px;
     margin-bottom: 10px;
 }
+
 /* menu page ends here  */
 /* meal details start form here  */
-.meal-details-container{
+.meal-details-container {
     width: 90%;
     margin: 30px auto;
     display: flex;
 }
-#meal-image{
+
+#meal-image {
     width: 50%;
     object-fit: cover;
 }
-.text-section{
+
+.text-section {
     padding-left: 20px;
     font-family: var(--soft);
 }
-.text-section #title{
+
+.text-section #title {
     color: var(--baseColor);
     font-family: var(--hard);
     font-size: 40px;
 }
-.text-section #sub-title{
+
+.text-section #sub-title {
     color: var(--light);
     margin: 10px 0 30px 0;
 }
-.text-section span{
+
+.text-section span {
     font-weight: bold;
     display: block;
     margin-bottom: 20px;
     font-size: 18px;
 }
-.text-section #description{
+
+.text-section #description {
     color: var(--light);
     font-weight: lighter;
     line-height: 30px;
     margin-bottom: 30px;
 }
-.text-section #add-to-cart{
+
+.text-section #add-to-cart {
     padding: 10px 20px;
     font-size: 20px;
     border-radius: 6px;
@@ -880,7 +912,75 @@ footer .container .sign-up p {
     cursor: pointer;
     transition: 0.3s;
 }
-.text-section #add-to-cart:hover{
+
+.text-section #add-to-cart:hover {
     background-color: rgb(199, 199, 255);
     color: var(--baseColor);
+}
+
+/* meals details end here  */
+/* signup starts here  */
+.sign-up-section {
+    height: 90vh;
+    background-image: url("https://media.blueapron.com/assets/signup/landing/background-landing-signup.jpg?quality=80&width=1440");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-up-container {
+    background-color: #fff;
+    width: 40%;
+    padding: 30px;
+    border-radius: 3px;
+    font-family: var(--soft);
+}
+
+.sign-up-container h1 {
+    color: var(--baseColor);
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+#sign-up-form, #login-form  {
+    display: flex;
+    flex-direction: column;
+}
+
+#sign-up-form label, #login-form label {
+    margin-bottom: 4px;
+}
+
+#sign-up-form input, #login-form input{
+    padding: 5px 10px;
+    font-size: 18px;
+    border: 1px solid #d3d5db;
+    border-radius: 2px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+#sign-up-form input[type="submit"], #login-form input[type="submit"] {
+    cursor: pointer;
+    background-color: var(--baseColor);
+    color: #fff;
+    transition: 0.3s;
+    padding: 6px 10px;
+    border: 0;
+}
+
+#sign-up-form input[type="submit"]:hover, #login-form input[type="submit"]:hover {
+    background-color: #d4e0ff;
+    color: var(--baseColor);
+}
+.or-options{
+    text-align: center;
+}
+.other-options a{
+    font-size: 30px;
+    color: var(--baseColor);
+}
+.clickhere{
+    text-decoration: underline;
 }

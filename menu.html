@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Land page</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -168,6 +168,14 @@
                         card.append(img, title, pricing, subTitle);
                         mealsContainer.append(card);
                     })
+                    const animation = document.querySelectorAll("#meals-cards-container > div");
+                    for(let i=0;i<animation.length;i++){
+                        if(i%2==0){
+                            animation[i].setAttribute("data-aos", "flip-right")
+                        }else{
+                            animation[i].setAttribute("data-aos", "flip-left")
+                        }
+                    }
                 }
             </script>
         </div>
