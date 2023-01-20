@@ -18,7 +18,7 @@
 
 <body>
     <!-- header start -->
-    <header>
+    <header class="navigation-header">
         <nav>
             <a href="./index.html" class="logo-link"><img src="./images/logo.png" alt="" id="logo" id="active"></a>
             <a href="./menu.html">ON THE MENU</a>
@@ -31,14 +31,40 @@
             <a href="./login.html"><button class="nav-btn" id="login">LOG IN</button></a>
             <a href="./signup.html"><button class="nav-btn" id="signUp">SIGN UP</button></a>
         </div>
+        <div class="welcome-container">
+            <div class="welcome">
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"></i></a>
+                <button id="logout">LOG OUT</button>
+                <span id="name"></span>
+                <script>
+                    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+                    document.getElementById("name").textContent = userInfo.username;
+                </script>
+            </div>
+        </div>
     </header>
     <!-- header end  -->
+    <!-- hamburger start  -->
+<header class="hamburger-header">
+    <ul class="menu">
+        <li><a class="menuItem" href="./index.html">HOME</a></li>
+        <li><a class="menuItem" href="./menu.html">MENU</a></li>
+        <li class="loginMargin"><a class="menuItem login-ham" href="./login.html" id="ham-login">LOGIN</a></li>
+        <li><a class="menuItem sign-up-ham" href="./signup.html" id="ham-signUp">SIGN UP</a></li>
+      </ul>
+      <button class="hamburger">
+        <!-- material icons https://material.io/resources/icons/ -->
+        <i class="fa-solid fa-bars"></i>
+        <i class="fa-regular fa-xmark"></i>
+      </button>
+</header>
+    <!-- hamburdger ends  -->
     <!-- section top container start  -->
     <section class="top-container">
         <div class="top-container-img">
             <div class="top-container-content">
                 <h1>The meal kit that puts quality first</h1>
-                <a href="#"><button class="btn">GET COOKIN`</button></a>
+                <a href="./menu.html"><button class="btn">GET COOKIN`</button></a>
             </div>
         </div>
     </section>
@@ -71,7 +97,7 @@
             </div>
         </div>
         <p class="get-started"> Get started for as little as <span>$7.99 per serving</span> </p>
-        <a href="#" class="get-cooking-btn">Get Cookin’</a>
+        <a href="./menu.html" class="get-cooking-btn">Get Cookin’</a>
     </section>
     <!-- home page section end  -->
     <!-- weekly options section start  -->
@@ -140,7 +166,7 @@
                 <p class="sub-title">Flourless Chocolate Cake</p>
             </div>
         </div>
-        <a href="#" class="browse-our-menus">BROWSE OUR MENUS</a>
+        <a href="./menu.html" class="browse-our-menus">BROWSE OUR MENUS</a>
     </section>
     <!-- weekly section options end  -->
     <!-- testiminial section start  -->
@@ -212,7 +238,7 @@
         <div class="getting-started-card">
             <p class="title">Get started now</p>
             <p class="sub-title">for as little as <span>$7.99 per serving</span> </p>
-            <a href="#" class="get-cooking-btn">Get Cookin’</a>
+            <a href="./menu.html" class="get-cooking-btn">Get Cookin’</a>
         </div>
     </section>
     <!-- getting started section end  -->

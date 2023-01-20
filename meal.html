@@ -30,8 +30,19 @@
             <a href="">MARKET</a>
         </nav>
         <div class="regestration">
-            <a href="#"><button class="nav-btn" id="login">LOG IN</button></a>
-            <a href="#"><button class="nav-btn" id="signUp">SIGN UP</button></a>
+            <a href="./login.html"><button class="nav-btn" id="login">LOG IN</button></a>
+            <a href="./signup.html"><button class="nav-btn" id="signUp">SIGN UP</button></a>
+        </div>
+        <div class="welcome-container">
+            <div class="welcome">
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"></i></a>
+                <button id="logout">LOG OUT</button>
+                <span id="name"></span>
+                <script>
+                    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+                    document.getElementById("name").textContent = userInfo.username;
+                </script>
+            </div>
         </div>
     </header>
     <!-- header end  -->
@@ -47,14 +58,61 @@
                 <p id="description"></p>
                 <button id="add-to-cart">Add to cart</button>
             </div>
+            
+        </div>
+        <div class="total-bill single-bill">
+            <table class="bill-table">
+                <tr>
+                    <th>Subtotal:</th>
+                    <td id="subtotal"></td>
+                </tr>
+                <tr>
+                    <th>GST:</th>
+                    <td id="gst"></td>
+                </tr>
+                <tr>
+                    <th>Discount 12%</th>
+                    <td id="discount"></td>
+                </tr>
+                <tr>
+                    <th>Grand Total:</th>
+                    <td id="grand-total"></td>
+                </tr>
+            </table>
+            <button id="check-out">Check out</button>
         </div>
     </section>
     <script>
+        const checkInfo = JSON.parse(localStorage.getItem("userInfo"))||null;
+        const cartInfo = JSON.parse(localStorage.getItem("cartInfo"))||[];
+        const addToCart = document.getElementById("add-to-cart");
         const thisApi = JSON.parse(localStorage.getItem("selectedMeal"));
+        const subtotal = thisApi.price;
+        const gst = Math.floor((subtotal*9)/100);
+        const discount = Math.floor((subtotal*12)/100);
+        const grandTotal = (subtotal+gst)-discount;
         document.getElementById("meal-image").src = thisApi.image;
         document.getElementById("title").textContent = thisApi.title;
         document.getElementById("sub-title").textContent = thisApi.subTitle;
         document.getElementById("description").textContent = thisApi.description;
+        document.getElementById("subtotal").textContent = `₹${subtotal}`;
+        document.getElementById("gst").textContent = `₹${gst}`;
+        document.getElementById("discount").textContent = `₹${discount}`;
+        document.getElementById("grand-total").textContent = `₹${grandTotal}`;
+        addToCart.addEventListener("click", () => {
+            if(checkInfo === null){
+                location.href = "./login.html";
+            }else{
+                for(let i=0;i<cartInfo.length;i++){
+                    if(cartInfo[i].id == thisApi.id){
+                        alert("already in cart");
+                        return;
+                    }
+                }
+                cartInfo.push({...thisApi, quantity: 1});
+                localStorage.setItem("cartInfo", JSON.stringify(cartInfo));
+            }
+        })
     </script>
     <!-- meal details section end  -->
 

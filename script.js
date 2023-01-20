@@ -658,3 +658,47 @@ const mainApi = [
     }
 ]
 localStorage.setItem("api", JSON.stringify(mainApi));
+toogleLogin();
+function toogleLogin() {
+    let loginChecker = JSON.parse(localStorage.getItem("userInfo")) || null;
+    if (loginChecker == null) {
+        document.querySelector(".regestration").style.display = "block";
+        document.querySelector(".welcome-container").style.display = "none";
+    } else {
+        document.querySelector(".regestration").style.display = "none";
+        document.querySelector(".welcome-container").style.display = "block";
+    }
+}
+document.getElementById("logout").addEventListener("click", () => {
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("cartInfo");
+    toogleLogin();
+    location.href = "./index.html"
+})
+
+// hamburger 
+const menu = document.querySelector(".menu");
+const menuItems = document.querySelectorAll(".menuItem");
+const hamburger= document.querySelector(".hamburger");
+const closeIcon= document.querySelector(".closeIcon");
+const menuIcon = document.querySelector(".menuIcon");
+
+
+function toggleMenu() {
+  if (menu.classList.contains("showMenu")) {
+    menu.classList.remove("showMenu");
+    closeIcon.style.display = "none";
+    menuIcon.style.display = "block";
+  } else {
+    menu.classList.add("showMenu");
+    closeIcon.style.display = "block";
+    menuIcon.style.display = "none";
+  }
+}
+
+hamburger.addEventListener("click", toggleMenu);
+menuItems.forEach( 
+    function(menuItem) { 
+      menuItem.addEventListener("click", toggleMenu);
+    }
+  )
