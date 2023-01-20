@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>payment</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <section class="payment-section">
+        <div class="payment-form">
+            <form id="pay-form" action="./order.html">
+                <h1>Checkout</h1>
+                <label>Card Number</label>
+                <input type="number" placeholder="xxxx xxxx xxxx xxxx"  required/>
+                <label>Expiry date</label>
+                <div class="expiry-date">
+                    <input type="number" id="expiry-month" placeholder="xx" style="border-right: none; border-radius: 4px 0 0 4px;" required/>
+                    <input type="number" id="expiry-year" placeholder="20xx" style="border-radius: 0 4px 4px 0;" required/>
+                </div>
+                <div class="codes">
+                    <div class="ifsc">
+                        <label>IFSC</label>
+                        <input type="number" id="ifsc" placeholder="***"  required/>
+                    </div>
+                    <div class="zip-code">
+                        <label>ZIP code</label>
+                        <input type="number" id="zip" placeholder="xxxxx"  required/>
+                    </div>
+                </div>
+                <button type="submit" id="pay">Pay ₹ <span id="amount">123</span> </button>
+            </form>
+        </div>
+    </section>
+</body>
+
+</html>

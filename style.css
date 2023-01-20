@@ -1207,6 +1207,116 @@ footer .container .sign-up p {
 .hamburger-header {
     display: none;
 }
+/* payment page starts here  */
+.payment-section{
+    background-image: url("https://cdn.pixabay.com/photo/2016/12/26/17/28/spaghetti-1932466__340.jpg");
+    height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.payment-form{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#pay-form{
+    width: 400px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 50px;
+    border-radius: 4px;
+    font-family: var(--soft);
+    display: flex;
+    flex-direction: column;
+}
+#pay-form h1{
+    color: var(--light);
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+#pay-form label{
+    display: block;
+    margin-bottom: 5px;
+}
+#pay-form input{
+    margin-bottom: 20px;
+    font-size: 20px;
+    padding: 15px 10px;
+    border: 1px solid #d3d5db;
+    border-radius: 2px;
+}
+#pay-form .codes{
+    display: flex;
+    justify-content: space-between;
+}
+#pay-form .expiry-date{
+    display: flex;
+}
+#pay-form .expiry-date input{
+    width: 50%;
+}
+#pay-form .codes input{
+    width: 80%;
+}
+#pay-form #pay{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(28, 245, 169);
+    color: #fff;
+    font-size: 20px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+}
+#pay-form #pay:hover{
+    background-color: rgb(4, 172, 114);
+}
+.order-section{
+    font-family: var(--soft);
+    margin-top: 20px;
+    width: 100vw;
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+}
+.order-section .container{
+    width: 80vw;
+    margin: auto;
+}
+.order-section .col-1{
+    width: 80vw;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: rgba(0, 0, 0, 0.794) 0px 3px 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background-color: #fff;
+}
+.order-section .col-1 img{
+    width: 100px;
+}
+.order-details{
+    display: flex;
+}
+.order-section .col-1 #title{
+    color: var(--baseColor);
+    font-size: 24px;
+}
+.order-section .col-1 #sub-title{
+    color: var(--light);
+    font-size: 18px;
+}
+#date{
+    font-size: 20px;
+}
+#amount{
+    font-size: 23px;
+}
 
 /* media queries  */
 @media screen and (max-width: 768px) {
@@ -1245,6 +1355,19 @@ footer .container .sign-up p {
 
     .carbon-neutral-card .sub-title {
         font-size: 24px;
+    }
+    .search-bar-form>.text{
+        display: none;
+    }
+    .meals-cards-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .meals-cards-container>div{
+        width: 241px;
+    }
+    .sign-up-container{
+        width: 70%;
+        padding: 16px;
     }
 }
 
@@ -1368,6 +1491,81 @@ footer .container .sign-up p {
     }
     .container-row-1{
         grid-template-columns: 1fr 1fr;
+    }
+    .search-bar-form>.text{
+        display: none;
+    }
+    .meals-cards-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .meals-cards-container>div{
+        width: 241px;
+    }
+    .meals-section-conainer{
+        display: block;
+        margin: 0;
+    }
+    .meals-container .meals-cards-container{
+        width: 100vw;
+        display: block;
+        margin: 0;
+    }
+    .meals-cards-container > div{
+        width: 95%;
+        margin: 10px auto;
+    }
+    .meals-cards-container > div img{
+        width: 100%;
+    }
+    #filter-heading{
+        text-align: center;
+    }
+    .meals-filters-container{
+        display: flex;
+        justify-content: space-around;
+    }
+    #meal-image{
+        width: 100%;
+    }
+    .meal-details-container{
+        display: block;
+        margin-top: 50px;
+    }
+    .sign-up-section{
+        margin-top: 50px;
+    }
+    .cart-details-section{
+        margin-top: 50px;
+    }
+    .cart-items-table tbody tr td img {
+        width: 40px;
+        height: 40px;
+    }
+    .cart-details-container{
+        width: 98vw;
+    }
+    .cart-items-table tbody tr .item .itemText .item-title{
+        font-size: 13px;
+    }
+    .cart-items-table tbody tr .item .itemText .item-subTitle{
+        font-size: 8px;
+    }
+    .cart-items-table tbody tr td:nth-child(2){
+        font-size: 14px;
+    }
+    .cart-items-table tbody tr td:nth-child(3) button{
+        width: 25px;
+        height: 25px;
+        font-size: 14px;
+    }
+    .cart-items-table tbody tr td:nth-child(3) span{
+        font-size: 14px;
+    }
+    .cart-items-table tbody tr td:nth-child(4) span{
+        font-size: 14px;
+    }
+    .cart-items-table tbody tr td:nth-child(4) i{
+        font-size: 14px;
     }
 }
 

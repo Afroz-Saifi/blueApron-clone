@@ -20,7 +20,7 @@
 
 <body>
     <!-- header start -->
-    <header>
+    <header class="navigation-header">
         <nav>
             <a href="./index.html" class="logo-link"><img src="./images/logo.png" alt="" id="logo"></a>
             <a href="./menu.html">ON THE MENU</a>
@@ -38,27 +38,58 @@
                 <a href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"></i></a>
                 <button id="logout">LOG OUT</button>
                 <span id="name"></span>
-                <script>
+                <!-- <script>
                     let userInfo = JSON.parse(localStorage.getItem("userInfo"));
                     document.getElementById("name").textContent = userInfo.username;
-                </script>
+                </script> -->
             </div>
         </div>
     </header>
+    <header class="hamburger-header">
+        <ul class="menu">
+            <li><a class="menuItem" href="./index.html">HOME</a></li>
+            <li><a class="menuItem" href="./menu.html">MENU</a></li>
+            <li class="loginMargin"><a class="menuItem login-ham" href="./login.html" id="ham-login">LOGIN</a></li>
+            <li><a class="menuItem sign-up-ham" href="./signup.html" id="ham-signUp">SIGN UP</a></li>
+            <button id="logoutHam"
+                style="border: none; background-color: red; color: #fff; padding: 5px 6px; position: absolute; margin-top: 15px; margin-left: 5px;">LOG
+                OUT</button>
+            <button
+                style="background-color: transparent; border: none; position: absolute; margin-top: 15px; margin-left: 90px;"><a
+                    href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"
+                        style="color: blue;"></i></a></button>
+        </ul>
+        <button class="hamburger">
+            <!-- material icons https://material.io/resources/icons/ -->
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-regular fa-xmark"></i>
+        </button>
+
+    </header>
+    <script>
+        let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        document.getElementById("name").textContent = userInfo.username;
+    </script>
     <!-- header end  -->
 
     <!-- meal details section start  -->
     <section class="meal-detail-section">
         <div class="meal-details-container">
-                <img id="meal-image"/>
+            <img id="meal-image" />
             <div class="text-section">
                 <h1 id="title"></h1>
+                <p id="price" style="font-size: 20px;"></p>
                 <p id="sub-title"></p>
                 <span>From the Test Kitchen</span>
                 <p id="description"></p>
+                <div class="quantity" style="display: flex; align-items: center; font-size: 24px;">
+                    <i class="fa-solid fa-arrow-up" id="increase"></i>
+                    <span style="margin: 0 10px; font-size: 24px;" id="quantity">1</span>
+                    <i class="fa-solid fa-arrow-down" id="decrease"></i>
+                </div>
                 <button id="add-to-cart">Add to cart</button>
             </div>
-            
+
         </div>
         <div class="total-bill single-bill">
             <table class="bill-table">
@@ -83,33 +114,56 @@
         </div>
     </section>
     <script>
-        const checkInfo = JSON.parse(localStorage.getItem("userInfo"))||null;
-        const cartInfo = JSON.parse(localStorage.getItem("cartInfo"))||[];
+        const checkInfo = JSON.parse(localStorage.getItem("userInfo")) || null;
+        const cartInfo = JSON.parse(localStorage.getItem("cartInfo")) || [];
         const addToCart = document.getElementById("add-to-cart");
         const thisApi = JSON.parse(localStorage.getItem("selectedMeal"));
-        const subtotal = thisApi.price;
-        const gst = Math.floor((subtotal*9)/100);
-        const discount = Math.floor((subtotal*12)/100);
-        const grandTotal = (subtotal+gst)-discount;
+        const chekoutBtn = document.getElementById("check-out");
         document.getElementById("meal-image").src = thisApi.image;
         document.getElementById("title").textContent = thisApi.title;
+        document.getElementById("price").textContent = `₹${thisApi.price}`;
         document.getElementById("sub-title").textContent = thisApi.subTitle;
         document.getElementById("description").textContent = thisApi.description;
-        document.getElementById("subtotal").textContent = `₹${subtotal}`;
-        document.getElementById("gst").textContent = `₹${gst}`;
-        document.getElementById("discount").textContent = `₹${discount}`;
-        document.getElementById("grand-total").textContent = `₹${grandTotal}`;
+        chekoutBtn.addEventListener("click", ()=>{
+            let count = Number(document.getElementById("quantity").innerText);
+            const subtotal = thisApi.price*count;
+            let pushApi = {...thisApi, total: subtotal}
+            localStorage.setItem("singleCheckout", JSON.stringify(pushApi));
+            location.href = "./address.html"
+        })
+        function bill() {
+            let count = Number(document.getElementById("quantity").innerText);
+            const subtotal = thisApi.price*count;
+            const gst = Math.floor((subtotal * 9) / 100);
+            const discount = Math.floor((subtotal * 12) / 100);
+            const grandTotal = (subtotal + gst) - discount;
+            document.getElementById("subtotal").textContent = `₹${subtotal}`;
+            document.getElementById("gst").textContent = `₹${gst}`;
+            document.getElementById("discount").textContent = `₹${discount}`;
+            document.getElementById("grand-total").textContent = `₹${grandTotal}`;
+        }
+        bill();
+        document.getElementById("increase").addEventListener("click", ()=>{
+            let count = Number(document.getElementById("quantity").innerText);
+            document.getElementById("quantity").innerText = count+1;
+            bill();
+        })
+        document.getElementById("decrease").addEventListener("click", ()=>{
+            let count = Number(document.getElementById("quantity").innerText);
+            document.getElementById("quantity").innerText = count-1;
+            bill();
+        })
         addToCart.addEventListener("click", () => {
-            if(checkInfo === null){
+            if (checkInfo === null) {
                 location.href = "./login.html";
-            }else{
-                for(let i=0;i<cartInfo.length;i++){
-                    if(cartInfo[i].id == thisApi.id){
+            } else {
+                for (let i = 0; i < cartInfo.length; i++) {
+                    if (cartInfo[i].id == thisApi.id) {
                         alert("already in cart");
                         return;
                     }
                 }
-                cartInfo.push({...thisApi, quantity: 1});
+                cartInfo.push({ ...thisApi, quantity: 1 });
                 localStorage.setItem("cartInfo", JSON.stringify(cartInfo));
             }
         })

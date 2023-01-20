@@ -20,7 +20,7 @@
 
 <body>
     <!-- header start -->
-    <header>
+    <header class="navigation-header">
         <nav>
             <a href="./index.html" class="logo-link"><img src="./images/logo.png" alt="" id="logo" id="active"></a>
             <a href="./menu.html">ON THE MENU</a>
@@ -44,6 +44,27 @@
                 </script>
             </div>
         </div>
+    </header>
+    <header class="hamburger-header">
+        <ul class="menu">
+            <li><a class="menuItem" href="./index.html">HOME</a></li>
+            <li><a class="menuItem" href="./menu.html">MENU</a></li>
+            <li class="loginMargin"><a class="menuItem login-ham" href="./login.html" id="ham-login">LOGIN</a></li>
+            <li><a class="menuItem sign-up-ham" href="./signup.html" id="ham-signUp">SIGN UP</a></li>
+            <button id="logoutHam"
+                style="border: none; background-color: red; color: #fff; padding: 5px 6px; position: absolute; margin-top: 15px; margin-left: 5px;">LOG
+                OUT</button>
+            <button
+                style="background-color: transparent; border: none; position: absolute; margin-top: 15px; margin-left: 90px;"><a
+                    href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"
+                        style="color: blue;"></i></a></button>
+        </ul>
+        <button class="hamburger">
+            <!-- material icons https://material.io/resources/icons/ -->
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-regular fa-xmark"></i>
+        </button>
+
     </header>
     <!-- header end  -->
 
@@ -155,12 +176,12 @@
                     let count = 0;
                     data.forEach((ele) => count += ele.quantity)
                     itemCount.textContent = `Your cart (${count} items)`;
-                    let gst = Math.floor((subtotal*9)/100);
-                    let discount = Math.floor((subtotal*12)/100);
+                    let gst = Math.floor((subtotal * 9) / 100);
+                    let discount = Math.floor((subtotal * 12) / 100);
                     document.getElementById("subtotal").textContent = `₹${subtotal}`;
                     document.getElementById("gst").textContent = `₹${gst}`;
                     document.getElementById("discount").textContent = `-₹${discount}`;
-                    document.getElementById("grand-total").textContent = `₹${((subtotal+gst)-discount)}`;
+                    document.getElementById("grand-total").textContent = `₹${((subtotal + gst) - discount)}`;
                 }
             </script>
         </div>

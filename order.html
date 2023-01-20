@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>order placed</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Kreon:wght@700&family=Lato&family=Montserrat:wght@500&family=Noto+Sans&family=Work+Sans&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <style>
+            body{
+                background-image: url("https://static.vecteezy.com/system/resources/previews/004/379/352/original/delivery-van-driver-with-parcels-flat-character-courier-postman-deliveryman-holding-cardboard-boxes-and-order-receipt-isolated-cartoon-illustration-on-white-background-shipping-service-transport-vector.jpg");
+                background-size: cover;
+            }
+        </style>
+</head>
+
+<body>
+    <!-- header start -->
+    <header class="navigation-header">
+        <nav>
+            <a href="./index.html" class="logo-link"><img src="./images/logo.png" alt="" id="logo"></a>
+            <a href="./menu.html">ON THE MENU</a>
+            <a href="#">PRICING</a>
+            <a href="#">WINE</a>
+            <a href="#">GIFTS</a>
+            <a href="">MARKET</a>
+        </nav>
+        <div class="regestration">
+            <a href="./login.html"><button class="nav-btn" id="login">LOG IN</button></a>
+            <a href="./signup.html"><button class="nav-btn" id="signUp">SIGN UP</button></a>
+        </div>
+        <div class="welcome-container">
+            <div class="welcome">
+                <a href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"></i></a>
+                <button id="logout">LOG OUT</button>
+                <span id="name"></span>
+                <!-- <script>
+                        let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+                        document.getElementById("name").textContent = userInfo.username;
+                    </script> -->
+            </div>
+        </div>
+    </header>
+    <header class="hamburger-header">
+        <ul class="menu">
+            <li><a class="menuItem" href="./index.html">HOME</a></li>
+            <li><a class="menuItem" href="./menu.html">MENU</a></li>
+            <li class="loginMargin"><a class="menuItem login-ham" href="./login.html" id="ham-login">LOGIN</a></li>
+            <li><a class="menuItem sign-up-ham" href="./signup.html" id="ham-signUp">SIGN UP</a></li>
+            <button id="logoutHam"
+                style="border: none; background-color: red; color: #fff; padding: 5px 6px; position: absolute; margin-top: 15px; margin-left: 5px;">LOG
+                OUT</button>
+            <button
+                style="background-color: transparent; border: none; position: absolute; margin-top: 15px; margin-left: 90px;"><a
+                    href="./cart.html"><i class="fa-solid fa-cart-shopping" id="see-cart"
+                        style="color: blue;"></i></a></button>
+        </ul>
+        <button class="hamburger">
+            <!-- material icons https://material.io/resources/icons/ -->
+            <i class="fa-solid fa-bars"></i>
+            <i class="fa-regular fa-xmark"></i>
+        </button>
+
+    </header>
+    <h1 style="text-align: center; font-family: var(--soft);">My orders</h1>
+    <section class="order-section">
+        <div class="container">
+            <h1>Order details</h1>
+            <div class="col-1">
+                <div class="order-details">
+                    <img id="order-image" />
+                    <div class="title-sub-title">
+                        <p id="title"></p>
+                        <p id="sub-title"></p>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <p id="date"></p>
+                    <p id="amount"></p>
+                </div>
+            </div>
+        </div>
+        <div class="shipping">
+            <h1>Shipping Address</h1>
+            <div class="shipping-container">
+                <p></p>
+            </div>
+        </div>
+    </section>
+    <script>
+        const thisApi = JSON.parse(localStorage.getItem("singleCheckout")) || [];
+        document.getElementById("order-image").src = thisApi.image;
+        document.getElementById("title").textContent = thisApi.title;
+        document.getElementById("sub-title").textContent = thisApi.subTitle;
+        let date = new Date();
+        document.getElementById("date").textContent = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+        document.getElementById("amount").textContent = "₹" + thisApi.total;
+        console.log(thisApi);
+    </script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
