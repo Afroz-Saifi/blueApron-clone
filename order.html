@@ -19,6 +19,7 @@
             body{
                 background-image: url("https://static.vecteezy.com/system/resources/previews/004/379/352/original/delivery-van-driver-with-parcels-flat-character-courier-postman-deliveryman-holding-cardboard-boxes-and-order-receipt-isolated-cartoon-illustration-on-white-background-shipping-service-transport-vector.jpg");
                 background-size: cover;
+                backdrop-filter: blur(10px);
             }
         </style>
 </head>
@@ -92,19 +93,35 @@
         <div class="shipping">
             <h1>Shipping Address</h1>
             <div class="shipping-container">
-                <p></p>
+                <div>
+                    <span id="phone"></span>
+                    <span id="email"></span>
+                </div>
+                <p id="address-line"></p>
+                <p id="state"></p>
+                <p id="district"></p>
+                <p id="pin-code"></p>
             </div>
         </div>
     </section>
     <script>
         const thisApi = JSON.parse(localStorage.getItem("singleCheckout")) || [];
+        const addressApi = JSON.parse(localStorage.getItem("addressInfo"));
+        const userApi = JSON.parse(localStorage.getItem("userInfo"));
         document.getElementById("order-image").src = thisApi.image;
         document.getElementById("title").textContent = thisApi.title;
         document.getElementById("sub-title").textContent = thisApi.subTitle;
         let date = new Date();
         document.getElementById("date").textContent = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
         document.getElementById("amount").textContent = "₹" + thisApi.total;
+        document.getElementById("phone").textContent = `+91 ${addressApi.phone}`;
+        document.getElementById("email").textContent = `${userApi.email}`;
+        document.getElementById("address-line").textContent = `${addressApi.address}`;
+        document.getElementById("state").textContent = `${addressApi.state}`;
+        document.getElementById("district").textContent = `${addressApi.district}`;
+        document.getElementById("pin-code").textContent = `${addressApi.pinCode}`;
         console.log(thisApi);
+        console.log(addressApi);
     </script>
     <script src="./script.js"></script>
 </body>

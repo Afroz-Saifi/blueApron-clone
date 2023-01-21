@@ -12,17 +12,33 @@
 <body>
     <section class="payment-section">
         <div class="payment-form">
-            <form id="pay-form" action="./payment.html">
+            <form id="pay-form">
                 <h1>Address</h1>
-                <input type="text" placeholder="address line-1" required />
-                <input type="text" id="expiry-month" placeholder="state"
+                <input type="text" placeholder="address line-1" id="addressText" required />
+                <input type="text" id="state" placeholder="state"
                     style="border-right: none; border-radius: 4px 0 0 4px;" required />
-                <input type="text" id="expiry-year" placeholder="district" style="border-radius: 0 4px 4px 0;" required />
-                <input type="number" id="ifsc" placeholder="PIN Code xxxx" required />
+                <input type="text" id="district" placeholder="district" style="border-radius: 0 4px 4px 0;" required />
+                <input type="number" id="pin_code" placeholder="PIN Code xxxx" required />
+                <input type="number" id="phone" placeholder="+91 xxxxxxxxxx" required />
                 <button type="submit" id="pay">CONTINUE</button>
             </form>
         </div>
     </section>
+    <script>
+        const form = document.getElementById("pay-form");
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            const addressApi = {
+                address: form.addressText.value,
+                state: form.state.value,
+                district: form.district.value,
+                pinCode: form.pin_code.value,
+                phone: form.phone.value
+            }
+            localStorage.setItem("addressInfo", JSON.stringify(addressApi));
+            location.href = "./payment.html"
+        })
+    </script>
 </body>
 
 </html>

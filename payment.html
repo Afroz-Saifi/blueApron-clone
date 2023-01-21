@@ -31,10 +31,14 @@
                         <input type="number" id="zip" placeholder="xxxxx"  required/>
                     </div>
                 </div>
-                <button type="submit" id="pay">Pay ₹ <span id="amount">123</span> </button>
+                <button type="submit" id="pay">Pay ₹ <span id="amount"></span> </button>
             </form>
         </div>
     </section>
+    <script>
+        const thisApi = JSON.parse(localStorage.getItem("singleCheckout"));
+        document.getElementById("amount").textContent = thisApi.total;
+    </script>
 </body>
 
 </html>

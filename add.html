@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addmeal</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(255, 41, 87);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: none;
+            padding: 5px 10px;
+            font-size: 18px;
+            border: 1px solid #d3d5db;
+            border-radius: 2px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        #add {
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <form>
+            <input type="text" placeholder="Meal name" id="meal_name" required />
+            <input type="text" placeholder="Meal Image" id="meal_image" style="width: 100%;" required />
+            <select id="meal_category" required>
+                <option value="Beef">Beef</option>
+                <option value="Fish">Fish</option>
+                <option value="Lamb">Lamb</option>
+                <option value="Pork">Pork</option>
+                <option value="Poultry">Poultry</option>
+                <option value="Poultry">Poultry</option>
+                <option value="Shellfish">Shellfish</option>
+                <option value="Shellfish">Shellfish</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="african">african</option>
+                <option value="american">american</option>
+                <option value="asian">asian</option>
+                <option value="asian">asian</option>
+                <option value="british">british</option>
+                <option value="cajun creole">cajun creole</option>
+            </select>
+            <input type="text" placeholder="Meal Price" id="meal_price" required />
+            <input type="text" placeholder="Meal Subtitle" id="meal_sub_title" required />
+            <textarea id="meal_decription" cols="30" rows="10" placeholder="Meal Description" required></textarea>
+            <button id="add" type="submit">ADD</button>
+        </form>
+    </section>
+
+    <script>
+        const formEl = document.querySelector("form");
+        let mainApi = JSON.parse(localStorage.getItem("api"));
+        formEl.addEventListener("submit", (event) => {
+            event.preventDefault();
+            mainApi.push({
+                category: formEl.meal_category.value,
+                description: formEl.meal_decription.value,
+                id: 6,
+                image: formEl.meal_image.value,
+                price: formEl.meal_price.value,
+                subTitle: formEl.meal_sub_title.value,
+                title: formEl.meal_name.value
+            })
+            localStorage.setItem("allApi", JSON.stringify(mainApi));
+            location.href = "./menu.html"
+        })
+    </script>
+    <!-- <script src="./adminScript.js"></script> -->
+</body>
+
+</html>

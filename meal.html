@@ -124,16 +124,20 @@
         document.getElementById("price").textContent = `₹${thisApi.price}`;
         document.getElementById("sub-title").textContent = thisApi.subTitle;
         document.getElementById("description").textContent = thisApi.description;
-        chekoutBtn.addEventListener("click", ()=>{
-            let count = Number(document.getElementById("quantity").innerText);
-            const subtotal = thisApi.price*count;
-            let pushApi = {...thisApi, total: subtotal}
-            localStorage.setItem("singleCheckout", JSON.stringify(pushApi));
-            location.href = "./address.html"
+        chekoutBtn.addEventListener("click", () => {
+            if (checkInfo === null) {
+                location.href = "./login.html";
+            } else {
+                let count = Number(document.getElementById("quantity").innerText);
+                const subtotal = thisApi.price * count;
+                let pushApi = { ...thisApi, total: subtotal }
+                localStorage.setItem("singleCheckout", JSON.stringify(pushApi));
+                location.href = "./address.html"
+            }
         })
         function bill() {
             let count = Number(document.getElementById("quantity").innerText);
-            const subtotal = thisApi.price*count;
+            const subtotal = thisApi.price * count;
             const gst = Math.floor((subtotal * 9) / 100);
             const discount = Math.floor((subtotal * 12) / 100);
             const grandTotal = (subtotal + gst) - discount;
@@ -143,14 +147,14 @@
             document.getElementById("grand-total").textContent = `₹${grandTotal}`;
         }
         bill();
-        document.getElementById("increase").addEventListener("click", ()=>{
+        document.getElementById("increase").addEventListener("click", () => {
             let count = Number(document.getElementById("quantity").innerText);
-            document.getElementById("quantity").innerText = count+1;
+            document.getElementById("quantity").innerText = count + 1;
             bill();
         })
-        document.getElementById("decrease").addEventListener("click", ()=>{
+        document.getElementById("decrease").addEventListener("click", () => {
             let count = Number(document.getElementById("quantity").innerText);
-            document.getElementById("quantity").innerText = count-1;
+            document.getElementById("quantity").innerText = count - 1;
             bill();
         })
         addToCart.addEventListener("click", () => {

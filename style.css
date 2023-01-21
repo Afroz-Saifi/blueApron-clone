@@ -816,20 +816,24 @@ footer .container .sign-up p {
 }
 
 /* meals container  */
+
 .meals-section-conainer {
     display: flex;
     justify-content: space-between;
     margin: 30px 40px;
 }
-
+.meals-container{
+    float: right;
+}
 .meals-cards-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 30px 15px;
+    width: 70vw;
 }
 
 .meals-cards-container>div {
-    width: 300px;
+    width: 100%;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -880,10 +884,11 @@ footer .container .sign-up p {
 }
 
 .meals-filters-container {
-    /* position: fixed;
-    width: 400px;
-    top: 50px;
-    left: 0; */
+    position: sticky;
+    top: 80px;
+    width: 160px;
+    float: left;
+    height: 80vh;
 }
 
 .meals-filters-container>div {
@@ -1316,6 +1321,29 @@ footer .container .sign-up p {
 }
 #amount{
     font-size: 23px;
+}
+.shipping{
+    width: 500px;
+    margin: auto;
+    margin-top: 20px;
+    font-family: var(--soft);
+    color: var(--light);
+}
+.shipping > h1{
+    color: #000;
+}
+.shipping > div{
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.794) 0px 3px 8px;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 4px;
+}
+.shipping > div > div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
 }
 
 /* media queries  */
