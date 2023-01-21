@@ -1,4 +1,8 @@
 let adminApi = JSON.parse(localStorage.getItem("api"));
+let added = JSON.parse(localStorage.getItem("added"));
+if(added != null){
+    adminApi.push(added);
+}
 let allApi = JSON.parse(localStorage.getItem("allApi"));
 const tbody = document.querySelector("tbody");
 document.getElementById("add-item").addEventListener("click", () => {

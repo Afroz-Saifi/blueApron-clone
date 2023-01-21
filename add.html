@@ -76,17 +76,19 @@
         let mainApi = JSON.parse(localStorage.getItem("api"));
         formEl.addEventListener("submit", (event) => {
             event.preventDefault();
-            mainApi.push({
+            let newMeal = {
                 category: formEl.meal_category.value,
                 description: formEl.meal_decription.value,
-                id: 6,
+                id: 999,
                 image: formEl.meal_image.value,
                 price: formEl.meal_price.value,
                 subTitle: formEl.meal_sub_title.value,
                 title: formEl.meal_name.value
-            })
+            }
+            mainApi.push(newMeal)
             localStorage.setItem("allApi", JSON.stringify(mainApi));
-            location.href = "./menu.html"
+            localStorage.setItem("added", JSON.stringify(newMeal));
+            location.href = "./admin.html"
         })
     </script>
     <!-- <script src="./adminScript.js"></script> -->
