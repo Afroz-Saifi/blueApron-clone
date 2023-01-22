@@ -427,7 +427,7 @@ button {
     position: relative;
     margin: 0 auto 64px;
     overflow: hidden;
-    width: 100vw;
+    /* width: 100vw; */
 }
 
 .carbon-neutral-section img {
