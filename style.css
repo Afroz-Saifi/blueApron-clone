@@ -1301,6 +1301,7 @@ footer .container .sign-up p {
     padding: 5px 10px;
     border-radius: 4px;
     background-color: #fff;
+    box-sizing: border-box;
 }
 .order-section .col-1 img{
     width: 100px;
@@ -1323,7 +1324,7 @@ footer .container .sign-up p {
     font-size: 23px;
 }
 .shipping{
-    width: 500px;
+    width: 50vw;
     margin: auto;
     margin-top: 20px;
     font-family: var(--soft);
@@ -1594,6 +1595,40 @@ footer .container .sign-up p {
     }
     .cart-items-table tbody tr td:nth-child(4) i{
         font-size: 14px;
+    }
+    .getting-started-card{
+        width: 90%;
+    }
+    .order-section .col-1{
+        display: block;
+    }
+    .order-details{
+        display: block;
+    }
+    #order-image{
+        width: 100%;
+    }
+    .shipping{
+        width: 97vw;
+        margin: auto;
+        color: rgb(47, 47, 47);
+        margin-top: 10px;
+    }
+    .search-bar-form{
+        justify-content: flex-start;
+    }
+    .go-btn-container>input{
+        line-height: 35px;
+        height: auto;
+        /* padding: 3px; */
+    }
+    .meals-filters-container{
+        width: 97%;
+        height: 200px;
+        /* border: 1px solid; */
+    }
+    .search-input-container {
+        margin-right: 40px;
     }
 }
 
