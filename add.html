@@ -73,7 +73,10 @@
 
     <script>
         const formEl = document.querySelector("form");
-        let mainApi = JSON.parse(localStorage.getItem("api"));
+        // let mainApi = JSON.parse(localStorage.getItem("adminApi"));
+        let mainApi = JSON.parse(localStorage.getItem("adminApi"))||JSON.parse(localStorage.getItem("api")); // added the line
+
+        
         formEl.addEventListener("submit", (event) => {
             event.preventDefault();
             let newMeal = {
@@ -88,6 +91,7 @@
             mainApi.push(newMeal)
             localStorage.setItem("allApi", JSON.stringify(mainApi));
             localStorage.setItem("added", JSON.stringify(newMeal));
+            localStorage.setItem("adminApi", JSON.stringify(mainApi)); // added the line
             location.href = "./admin.html"
         })
     </script>

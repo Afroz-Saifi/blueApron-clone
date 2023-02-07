@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>addmeal</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(255, 41, 87);
+        }
+
+        form {
+            /* display: flex;
+            flex-direction: column; */
+            width: 60vw;
+            background-color: #fff;
+            padding: 10px;
+        }
+
+        .container {
+            /* border: 1px solid; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: none;
+            padding: 5px 10px;
+            font-size: 18px;
+            border: 1px solid rgb(255, 41, 87);
+            border-radius: 2px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            margin-top: 3px;
+        }
+
+        .col-1 {
+            width: 50%;
+        }
+
+        .col-2 {
+            width: 40%;
+        }
+
+        #add {
+            font-size: 18px;
+            padding: 5px 10px;
+        }
+
+        label {
+            color: rgb(255, 41, 87);
+            font-size: 20px;
+            font-family: var(--soft);
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            font-size: 18px;
+            padding: 3px 6px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+
+        #save {
+            background-color: green;
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section>
+        <form>
+            <div class="container">
+                <div class="col-1">
+                    <label>Name</label> <button id="chngName">Change</button>
+                    <input type="text" placeholder="Meal name" id="meal_name" required />
+                    <label>Image</label> <button id="chngImage">Change</button>
+                    <input type="text" placeholder="Meal Image" id="meal_image" style="width: 100%;" required />
+                    <label>Price</label> <button id="chngPrice">Change</button>
+                    <input type="text" placeholder="Meal Price" id="meal_price" required />
+                    <label>Subtitle</label> <button id="chngSubTitle">Change</button>
+                    <input type="text" placeholder="Meal Subtitle" id="meal_sub_title" required />
+                </div>
+                <div class="col-2">
+                    <label>Description</label> <button id="chngDesc">Change</button>
+                    <textarea id="meal_decription" cols="30" rows="10" placeholder="Meal Description"
+                        required></textarea>
+                </div>
+            </div>
+            <button id="save" type="submit">SAVE</button>
+        </form>
+    </section>
+
+    <script>
+        let thisApi = JSON.parse(localStorage.getItem("adminApi"))||JSON.parse(localStorage.getItem("api"));
+        let toEdit = JSON.parse(localStorage.getItem("toEdit"));
+        let form = document.querySelector("form");
+        let Mname = document.getElementById("meal_name");
+        let Mimage = document.getElementById("meal_image");
+        let Mprice = document.getElementById("meal_price");
+        let MsubTitle = document.getElementById("meal_sub_title");
+        let Mdecription = document.getElementById("meal_decription");
+        Mname.value = toEdit.title;
+        Mimage.value = toEdit.image;
+        Mprice.value = toEdit.price;
+        MsubTitle.value = toEdit.subTitle;
+        Mdecription.value = toEdit.description;
+        document.getElementById("chngName").addEventListener("click", () => {
+            Mname.value = "";
+        })
+        document.getElementById("chngImage").addEventListener("click", () => {
+            Mimage.value = "";
+        })
+        document.getElementById("chngSubTitle").addEventListener("click", () => {
+            MsubTitle.value = "";
+        })
+        document.getElementById("chngPrice").addEventListener("click", () => {
+            Mprice.value = "";
+        })
+        document.getElementById("chngDesc").addEventListener("click", () => {
+            Mdecription.value = "";
+        })
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+            let obj = {
+                temp: toEdit.title,
+                category: toEdit.category,
+                description: form.meal_decription.value,
+                id: toEdit.id,
+                image: form.meal_image.value,
+                price: form.meal_price.value,
+                subTitle: form.meal_sub_title.value,
+                title: form.meal_name.value
+            }
+                for (let i = 0; i < thisApi.length; i++) {
+                    if (thisApi[i].title == obj.temp) {
+                        thisApi[i].description = obj.description;
+                        thisApi[i].image = obj.image;
+                        thisApi[i].price = obj.price;
+                        thisApi[i].subTitle = obj.subTitle;
+                        thisApi[i].title = obj.title;
+                    }
+                }
+                // the changement
+                localStorage.setItem("adminApi", JSON.stringify(thisApi));
+                localStorage.setItem("allApi", JSON.stringify(thisApi));
+                // display(adminApi);
+                location.href = "./admin.html"
+                // console.log(obj);
+        })
+
+    </script>
+    <!-- <script src="./adminScript.js"></script> -->
+</body>
+
+</html>

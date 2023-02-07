@@ -1,10 +1,13 @@
-let adminApi = JSON.parse(localStorage.getItem("api"));
-let added = JSON.parse(localStorage.getItem("added"));
-if(added != null){
-    adminApi.push(added);
-}
-let allApi = JSON.parse(localStorage.getItem("allApi"));
 const tbody = document.querySelector("tbody");
+// let adminApi = JSON.parse(localStorage.getItem("api"));
+let adminApi = JSON.parse(localStorage.getItem("adminApi"))||JSON.parse(localStorage.getItem("api"));  // added the line
+let added = JSON.parse(localStorage.getItem("added"));
+let edited  = JSON.parse(localStorage.getItem("editedApi"));
+// if(added != null){
+//     adminApi.push(added);
+// }
+
+let allApi = JSON.parse(localStorage.getItem("allApi"));
 document.getElementById("add-item").addEventListener("click", () => {
     location.href = "./add.html";
 })
@@ -41,6 +44,11 @@ function display(data) {
         let action = document.createElement("td");
         let edit = document.createElement("button");
         edit.setAttribute("id", "edit");
+        edit.addEventListener("click", () => {
+            let editTempApi = JSON.parse(localStorage.getItem("allApi")) || JSON.parse(localStorage.getItem("adminApi"));
+            localStorage.setItem("toEdit", JSON.stringify(ele));
+            location.href = "./edit.html"
+        })
         let del = document.createElement("button");
         del.setAttribute("id", "delete");
         del.addEventListener("click", ()=>{
